@@ -1,0 +1,336 @@
+<!doctype html>
+<html lang="id" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BUNGA LESTARI - Toko Tanaman Hias &amp; Bunga</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&amp;family=Poppins:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+        body {
+            box-sizing: border-box;
+        }
+        
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-poppins { font-family: 'Poppins', sans-serif; }
+        
+        .sparkle {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .sparkle::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent 30%, rgba(255,255,255,0.5) 50%, transparent 70%);
+            animation: sparkle 3s infinite;
+            pointer-events: none;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+        
+        .hover-lift {
+            transition: all 0.3s ease;
+        }
+        
+        .hover-lift:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.15);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #f0fdf4 0%, #fefefe 50%, #f0f9ff 100%);
+        }
+        
+        .cart-count {
+            background: #ec4899;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: absolute;
+            top: -8px;
+            right: -8px;
+        }
+        
+        .floating-hearts {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(236, 72, 153, 0.3);
+            animation: float 6s infinite ease-in-out;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+            50% { transform: translateY(-20px) rotate(180deg); opacity: 1; }
+        }
+        
+        .promo-gradient {
+            background: linear-gradient(135deg, #ec4899 0%, #f97316 50%, #eab308 100%);
+        }
+        
+        .leaf-pattern {
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2310b981' fill-opacity='0.05'%3E%3Cpath d='M30 30c0-11.046-8.954-20-20-20s-20 8.954-20 20 8.954 20 20 20 20-8.954 20-20zm0 0c0 11.046 8.954 20 20 20s20-8.954 20-20-8.954-20-20-20-20 8.954-20 20z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full font-poppins gradient-bg leaf-pattern"><!-- Header -->
+  <header class="bg-white/95 backdrop-blur-sm shadow-lg sticky top-0 z-50">
+   <div class="container mx-auto px-4 py-4">
+    <div class="flex items-center justify-between"><!-- Logo -->
+     <div class="flex items-center space-x-3">
+      <div class="w-12 h-12 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center sparkle">
+       <svg class="w-8 h-8 text-emerald-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" /> <path d="M12 16C12 18.21 10.21 20 8 20S4 18.21 4 16C4 13.79 5.79 12 8 12S12 13.79 12 16Z" /> <path d="M20 16C20 18.21 18.21 20 16 20S12 18.21 12 16C12 13.79 13.79 12 16 12S20 13.79 20 16Z" />
+       </svg>
+      </div>
+      <h1 id="store-name" class="text-2xl font-playfair font-bold bg-gradient-to-r from-emerald-700 to-pink-600 bg-clip-text text-transparent">BUNGA LESTARI</h1>
+     </div><!-- Navigation -->
+     <nav class="hidden md:flex space-x-8"><a href="#home" class="text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 hover:scale-105">HOME</a> <a href="#products" class="text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 hover:scale-105">PRODUCT</a> <a href="#about" class="text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 hover:scale-105">ABOUT</a> <a href="#testimonials" class="text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 hover:scale-105">TESTIMONIAL</a> <a href="#contact" class="text-gray-700 hover:text-emerald-600 font-medium transition-all duration-300 hover:scale-105">CONTACT US</a>
+     </nav><!-- Cart Button -->
+     <div class="flex items-center space-x-4"><button id="cart-btn" class="relative p-3 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full hover:from-emerald-200 hover:to-pink-200 transition-all duration-300 hover:scale-110 sparkle">
+       <svg class="w-6 h-6 text-emerald-600" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.5 6M7 13l-1.5 6m0 0h9m-9 0V19a2 2 0 002 2h6a2 2 0 002-2v-.5" />
+       </svg><span id="cart-count" class="cart-count">0</span> </button> <!-- Mobile Menu Button --> <button id="mobile-menu-btn" class="md:hidden p-2 text-gray-700">
+       <svg class="w-6 h-6" fill="none" stroke="currentColor" viewbox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+       </svg></button>
+     </div>
+    </div><!-- Mobile Navigation -->
+    <nav id="mobile-nav" class="md:hidden mt-4 pb-4 border-t pt-4 hidden">
+     <div class="flex flex-col space-y-3"><a href="#home" class="text-gray-700 hover:text-emerald-600 font-medium transition-colors">HOME</a> <a href="#products" class="text-gray-700 hover:text-emerald-600 font-medium transition-colors">PRODUCT</a> <a href="#about" class="text-gray-700 hover:text-emerald-600 font-medium transition-colors">ABOUT</a> <a href="#testimonials" class="text-gray-700 hover:text-emerald-600 font-medium transition-colors">TESTIMONIAL</a> <a href="#contact" class="text-gray-700 hover:text-emerald-600 font-medium transition-colors">CONTACT US</a>
+     </div>
+    </nav>
+   </div>
+  </header><!-- Hero Section -->
+  <section id="home" class="py-20 relative overflow-hidden">
+   <div class="floating-hearts">
+    <div class="heart" style="left: 10%; animation-delay: 0s;">
+     💚
+    </div>
+    <div class="heart" style="left: 20%; animation-delay: 1s;">
+     🌸
+    </div>
+    <div class="heart" style="left: 30%; animation-delay: 2s;">
+     🌿
+    </div>
+    <div class="heart" style="left: 70%; animation-delay: 3s;">
+     💖
+    </div>
+    <div class="heart" style="left: 80%; animation-delay: 4s;">
+     🌺
+    </div>
+    <div class="heart" style="left: 90%; animation-delay: 5s;">
+     🍃
+    </div>
+   </div>
+   <div class="container mx-auto px-4 relative z-10">
+    <div class="flex flex-col lg:flex-row items-center">
+     <div class="lg:w-1/2 mb-12 lg:mb-0">
+      <h2 id="hero-tagline" class="text-5xl lg:text-7xl font-playfair font-bold bg-gradient-to-r from-emerald-700 via-pink-600 to-emerald-600 bg-clip-text text-transparent mb-8 leading-tight">Tumbuhkan keindahan disetiap sudut</h2>
+      <p class="text-xl text-gray-600 mb-10 leading-relaxed">Temukan koleksi tanaman hias, bunga segar, dan perlengkapan berkebun terbaik untuk mempercantik rumah Anda dengan sentuhan feminin yang elegan</p><button id="main-cta" class="bg-gradient-to-r from-emerald-500 to-pink-500 text-white px-10 py-5 rounded-full font-semibold text-lg hover:from-emerald-600 hover:to-pink-600 transition-all duration-300 sparkle hover-lift shadow-lg"> Belanja Sekarang </button>
+     </div>
+     <div class="lg:w-1/2">
+      <div class="relative">
+       <div class="absolute inset-0 bg-gradient-to-br from-emerald-200/30 to-pink-200/30 rounded-3xl transform rotate-6"></div><img src="https://i.pinimg.com/736x/89/3a/27/893a27a9064d0b3175a39972d01c6b57.jpg" alt="Model dengan tanaman hias" class="relative w-full h-96 lg:h-[500px] object-cover rounded-3xl shadow-2xl hover-lift" onerror="this.src=''; this.alt='Gambar tidak dapat dimuat'; this.style.display='none';">
+       <div class="absolute inset-0 bg-gradient-to-t from-emerald-900/20 to-transparent rounded-3xl"></div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Promo Banner -->
+  <section class="py-12 promo-gradient relative overflow-hidden">
+   <div class="absolute inset-0 sparkle"></div>
+   <div class="container mx-auto px-4 text-center relative z-10">
+    <h3 id="promo-text" class="text-4xl lg:text-5xl font-playfair font-bold text-white mb-3 drop-shadow-lg">SALE 10%</h3>
+    <p class="text-white/90 text-lg font-medium">Untuk semua produk tanaman hias pilihan! ✨</p>
+   </div>
+  </section><!-- Products Section -->
+  <section id="products" class="py-20">
+   <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+     <h2 class="text-5xl font-playfair font-bold bg-gradient-to-r from-emerald-700 to-pink-600 bg-clip-text text-transparent mb-6">Produk Unggulan</h2>
+     <p class="text-gray-600 max-w-2xl mx-auto text-lg">Pilihan terbaik tanaman hias dan perlengkapan berkebun untuk mempercantik ruang Anda dengan sentuhan feminin</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8" id="products-grid"><!-- Products will be populated by JavaScript -->
+    </div>
+   </div>
+  </section><!-- About Section -->
+  <section id="about" class="py-20 bg-gradient-to-br from-emerald-50/50 to-pink-50/50">
+   <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto text-center">
+     <h2 class="text-5xl font-playfair font-bold bg-gradient-to-r from-emerald-700 to-pink-600 bg-clip-text text-transparent mb-8">Tentang Kami</h2>
+     <p class="text-xl text-gray-600 mb-12 leading-relaxed">Bunga Lestari adalah toko tanaman hias terpercaya yang telah melayani pecinta tanaman selama bertahun-tahun. Kami menyediakan berbagai macam tanaman hias berkualitas tinggi, bunga segar, pot cantik, dan media tanam organik untuk membantu Anda menciptakan taman impian di rumah dengan sentuhan feminin yang elegan.</p>
+     <div class="grid grid-cols-1 md:grid-cols-3 gap-10 mt-16">
+      <div class="text-center hover-lift">
+       <div class="w-20 h-20 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 sparkle">
+        <svg class="w-10 h-10 text-emerald-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" />
+        </svg>
+       </div>
+       <h3 class="font-semibold text-xl text-gray-800 mb-3">Kualitas Terbaik</h3>
+       <p class="text-gray-600">Tanaman pilihan dengan kualitas terjamin dan perawatan terbaik</p>
+      </div>
+      <div class="text-center hover-lift">
+       <div class="w-20 h-20 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 sparkle">
+        <svg class="w-10 h-10 text-emerald-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
+        </svg>
+       </div>
+       <h3 class="font-semibold text-xl text-gray-800 mb-3">Pelayanan Terpercaya</h3>
+       <p class="text-gray-600">Konsultasi gratis dan after-sales service yang ramah</p>
+      </div>
+      <div class="text-center hover-lift">
+       <div class="w-20 h-20 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mx-auto mb-6 sparkle">
+        <svg class="w-10 h-10 text-emerald-600" fill="currentColor" viewbox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
+        </svg>
+       </div>
+       <h3 class="font-semibold text-xl text-gray-800 mb-3">Harga Terjangkau</h3>
+       <p class="text-gray-600">Harga bersaing dengan kualitas premium untuk semua</p>
+      </div>
+     </div>
+    </div>
+   </div>
+  </section><!-- Testimonials Section -->
+  <section id="testimonials" class="py-20">
+   <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+     <h2 class="text-5xl font-playfair font-bold bg-gradient-to-r from-emerald-700 to-pink-600 bg-clip-text text-transparent mb-6">Testimoni Pelanggan</h2>
+     <p class="text-gray-600 text-lg">Apa kata pelanggan setia kami tentang Bunga Lestari</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+     <div class="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover-lift border border-emerald-100">
+      <div class="flex items-center mb-6">
+       <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-emerald-600 font-semibold text-lg">SA</span>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Sari Andini</h4>
+        <div class="flex text-yellow-400 text-lg">
+         ★★★★★
+        </div>
+       </div>
+      </div>
+      <p class="text-gray-600 italic leading-relaxed">"Tanaman monstera yang saya beli sangat sehat dan berkualitas. Pelayanannya juga ramah dan profesional! Sangat recommended 💚"</p>
+     </div>
+     <div class="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover-lift border border-emerald-100">
+      <div class="flex items-center mb-6">
+       <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-emerald-600 font-semibold text-lg">DP</span>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Dian Pratiwi</h4>
+        <div class="flex text-yellow-400 text-lg">
+         ★★★★★
+        </div>
+       </div>
+      </div>
+      <p class="text-gray-600 italic leading-relaxed">"Pot keramiknya cantik banget! Cocok untuk dekorasi ruang tamu. Pasti akan order lagi. Terima kasih Bunga Lestari! 🌸"</p>
+     </div>
+     <div class="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover-lift border border-emerald-100">
+      <div class="flex items-center mb-6">
+       <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-emerald-600 font-semibold text-lg">RH</span>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Rina Handayani</h4>
+        <div class="flex text-yellow-400 text-lg">
+         ★★★★★
+        </div>
+       </div>
+      </div>
+      <p class="text-gray-600 italic leading-relaxed">"Media tanam organiknya bagus, tanaman jadi subur dan sehat. Terima kasih Bunga Lestari! Pelayanan terbaik 🌿"</p>
+     </div>
+     <div class="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover-lift border border-emerald-100">
+      <div class="flex items-center mb-6">
+       <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-emerald-600 font-semibold text-lg">AM</span>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Andi Mulyono</h4>
+        <div class="flex text-yellow-400 text-lg">
+         ★★★★★
+        </div>
+       </div>
+      </div>
+      <p class="text-gray-600 italic leading-relaxed">"Sansevieria yang saya beli masih segar dan sehat sampai sekarang. Recommended banget untuk pemula! 💚"</p>
+     </div>
+     <div class="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover-lift border border-emerald-100">
+      <div class="flex items-center mb-6">
+       <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-emerald-600 font-semibold text-lg">LK</span>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Lisa Kartika</h4>
+        <div class="flex text-yellow-400 text-lg">
+         ★★★★★
+        </div>
+       </div>
+      </div>
+      <p class="text-gray-600 italic leading-relaxed">"Bunga anggrek putihnya indah sekali! Packaging juga rapi dan aman. Terima kasih! Pasti order lagi 🌺"</p>
+     </div>
+     <div class="bg-white/80 backdrop-blur-sm p-8 rounded-3xl shadow-lg hover-lift border border-emerald-100">
+      <div class="flex items-center mb-6">
+       <div class="w-14 h-14 bg-gradient-to-br from-emerald-100 to-pink-100 rounded-full flex items-center justify-center mr-4"><span class="text-emerald-600 font-semibold text-lg">BS</span>
+       </div>
+       <div>
+        <h4 class="font-semibold text-gray-800 text-lg">Budi Santoso</h4>
+        <div class="flex text-yellow-400 text-lg">
+         ★★★★★
+        </div>
+       </div>
+      </div>
+      <p class="text-gray-600 italic leading-relaxed">"Pelayanan cepat dan tanaman berkualitas. Sudah langganan di sini bertahun-tahun! Terpercaya sekali 🍃"</p>
+     </div>
+    </div>
+   </div>
+  </section><!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gradient-to-br from-emerald-50/50 to-pink-50/50">
+   <div class="container mx-auto px-4">
+    <div class="max-w-5xl mx-auto">
+     <div class="text-center mb-16">
+      <h2 class="text-5xl font-playfair font-bold bg-gradient-to-r from-emerald-700 to-pink-600 bg-clip-text text-transparent mb-6">Hubungi Kami</h2>
+      <p class="text-gray-600 text-lg">Kami siap membantu Anda menemukan tanaman impian</p>
+     </div>
+     <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      <div class="bg-white/80 backdrop-blur-sm p-10 rounded-3xl shadow-lg border border-emerald-100">
+       <h3 class="text-3xl font-playfair font-semibold bg-gradient-to-r from-emerald-700 to-pink-600 bg-clip-text text-transparent mb-8">Informasi Kontak</h3>
+       <div class="space-y-6">
+        <div class="flex items-start space-x-4"><span class="text-2xl mt-1">📍</span>
+         <div>
+          <p class="font-semibold text-gray-800 text-lg mb-1">Alamat</p>
+          <p class="text-gray-600">Jl. Juwana - Tayu, Margoyoso, Pati</p>
+         </div>
+        </div>
+        <div class="flex items-start space-x-4"><span class="text-2xl mt-1">📞</span>
+         <div>
+          <p class="font-semibold text-gray-800 text-lg mb-1">Telepon</p><a href="tel:+6281319706818" class="text-emerald-600 hover:text-emerald-700 transition-colors">(+62) 81319706818</a>
+         </div>
+        </div>
+        <div class="flex items-start space-x-4"><span class="text-2xl mt-1">✉️</span>
+         <div>
+          <p class="font-semibold text-gray-800 text-lg mb-1">Email</p><a href="mailto:BungaLestari12@gmail.com" class="text-emerald-600 hover:text-emerald-700 transition-colors">BungaLestari12@gmail.com</a>
+         </div>
+        </div>
+        <div class="flex items-start space-x-4"><span class="text-2xl mt-1">🕖</span>
+         <div>
+          <p class="font-semibold text-gray-800 text-lg mb-1">Jam Operasional</p>
+          <p class="text-gray-600">Senin - Sabtu : 08.00 - 16.00</p>
+         </div>
+        </div>
+       </div>
+      </div>
+      <div class="bg-white/80 backdrop-blur-sm p-10 rounded-3xl shadow-lg border border-emerald-100">
+       <h3 class="text-3xl font-playfair font-semibold bg-gradient-to-r from-emerald-700 to-pink-600 bg-clip-text text-transparent mb-8">Newsletter</h3>
+       <p class="text-gray-600 mb-8 text-lg">Dapat
